@@ -5,7 +5,16 @@ using namespace std;
 namespace ariel
 {
 
-class Unit
+enum class Unit
 {
+    CM,
+    M,
+    KM,
+    SEC,
+    MIN,
+    HOUR,
+    G,
+    KG,
+    TON
 };
 }; // namespace ariel
