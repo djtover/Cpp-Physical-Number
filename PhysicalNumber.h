@@ -14,9 +14,9 @@ private:
   Unit type;
 
   // private methods
-  void addEqualMass(PhysicalNumber &other);
-  void addEqualTime(PhysicalNumber &other);
-  void addEqualLength(PhysicalNumber &other);
+  double addMass(PhysicalNumber &other);
+  double addTime(PhysicalNumber &other);
+  double addLength(PhysicalNumber &other);
   static istream &getAndCheckNextCharIs(istream &input, char expectedChar);
 
 public:
@@ -80,10 +80,45 @@ public:
     type = u;
   }
 
-  PhysicalNumber operator+(PhysicalNumber &other)
+  PhysicalNumber operator+(PhysicalNumber other)
   {
     int currentType = (int)type;
     int otherType = (int)other.getType();
+    double v;
+    if (currentType == otherType)
+    {
+      v = value + other.getValue();
+    }
+    else
+    {
+      if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      {
+       v = addLength(other);
+      }
+      else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      {
+        v = addTime(other);
+      }
+      else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      {
+        v = addMass(other);
+      }
+      else
+      {
+        throw std::out_of_range("Different units");
+      }
+    }
+    return PhysicalNumber(v, type);
+  }
+  PhysicalNumber operator+()
+  {
+    return *this;
+  }
+  PhysicalNumber operator+=(PhysicalNumber other) 
+  {
+      int currentType = (int)type;
+    int otherType = (int)other.getType();
+   
     if (currentType == otherType)
     {
       value = value + other.getValue();
@@ -92,29 +127,23 @@ public:
     {
       if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
       {
-        addEqualLength(other);
+        value = addLength(other);
+        
       }
       else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
       {
-        addEqualTime(other);
+       value = addTime(other);
       }
       else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
       {
-        addEqualMass(other);
+        value = addMass(other);
       }
       else
       {
+        cout << currentType << "," << otherType << endl;
         throw std::out_of_range("Different units");
       }
     }
-    return *this;
-  }
-  PhysicalNumber operator+()
-  {
-    return *this;
-  }
-  PhysicalNumber &operator+=(const PhysicalNumber &other)
-  {
     return *this;
   }
   PhysicalNumber &operator++()
@@ -160,8 +189,47 @@ public:
   friend ostream &operator<<(ostream &os, const PhysicalNumber &pn)
   {
     double v = pn.getValue();
-    int t = (int)pn.getType();
-    return (os << v << ' ' << t << endl);
+    int s = (int)pn.getType();
+      if (s == 0)
+    {
+    return (os << v << "[cm]"); 
+       }
+    else if (s == 1)
+    {
+    return (os << v << "[m]"); 
+    }
+    else if (s == 2)
+    {
+    return (os << v << "[km]"); 
+    }
+    else if (s == 3)
+    {
+    return (os << v << "[sec]"); 
+    }
+    else if (s == 4)
+    {
+    return (os << v << "[min]"); 
+    }
+    else if (s == 5)
+    {
+    return (os << v << "[hour]"); 
+    }
+    else if (s == 6)
+    {
+    return (os << v << "[g]"); 
+    }
+    else if (s == 7)
+    {
+    return (os << v << "[kg]"); 
+    }
+    else if (s == 8)
+    {
+    return (os << v << "[ton]"); 
+    }
+    else
+    {
+      throw std::out_of_range("Thats not a type");
+    }
   }
   friend istream &operator>>(istream &input, PhysicalNumber &pn)
   {
@@ -173,9 +241,10 @@ public:
 
     if ((!(input >> newValue)) ||
         (!getAndCheckNextCharIs(input, '[')) ||
-        (!(input >> newType)) ||
-        (!(getAndCheckNextCharIs(input, ']'))))
+        (!(input >> newType))
+        || (!(getAndCheckNextCharIs(input, ']'))))
     {
+      
 
       // rewind on error
       auto errorState = input.rdstate(); // remember error state
@@ -186,13 +255,15 @@ public:
     else
     {
      pn.setValue(newValue);
+     cout << pn.getValue() << endl;
      pn.setType(newType);
+     cout << (int)pn.getType() << endl;
     }
 
     return input;
   }
 
-  PhysicalNumber(int x, ariel::Unit u)
+  PhysicalNumber(double x, ariel::Unit u)
   {
     PhysicalNumber::value = x;
     PhysicalNumber::type = u;

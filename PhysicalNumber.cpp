@@ -5,10 +5,11 @@
 //     delete type;
 // }
 
-void ariel::PhysicalNumber::addEqualMass(PhysicalNumber &other)
+double ariel::PhysicalNumber::addMass(PhysicalNumber &other)
 {
     int currentType = (int)type;
     int otherType = (int)other.getType();
+    double v;
 
     if (currentType > otherType)
     {
@@ -18,18 +19,21 @@ void ariel::PhysicalNumber::addEqualMass(PhysicalNumber &other)
             // otherType is in KG
             if (otherType == 7)
             {
-                value = value + (other.getValue()) * 0.001;
+                v = value + (other.getValue()) * 0.001;
+                // return v;
             }
             // otherType is in G
             else
             {
-                value = value + (other.getValue()) * 0.000001;
+                v = value + (other.getValue()) * 0.000001;
+                // return v;
             }
         }
         // currentType is in KG and otherType is in G
         else
         {
-            value = value + (other.getValue()) * 0.001;
+            v = value + (other.getValue()) * 0.001;
+            // return v;
         }
     }
     else
@@ -40,26 +44,31 @@ void ariel::PhysicalNumber::addEqualMass(PhysicalNumber &other)
             // currentType is in KG
             if (currentType == 7)
             {
-                value = value + (other.getValue()) * 1000;
+                v = value + (other.getValue()) * 1000;
+                // return v;
             }
             // currenType is in G
             else
             {
-                value = value + (other.getValue()) * 1000000;
+                v = value + (other.getValue()) * 1000000;
+                // return v;
             }
         }
         // otherType is in KG and currentType is in G
         else
         {
-            value = value + (other.getValue()) * 1000;
+            v = value + (other.getValue()) * 1000;
+            // return v;
         }
     }
+    return v;
 }
 
-void ariel::PhysicalNumber::addEqualTime(PhysicalNumber &other)
+double ariel::PhysicalNumber::addTime(PhysicalNumber &other)
 {
     int currentType = (int)type;
     int otherType = (int)other.getType();
+    double v;
     if (currentType > otherType)
     {
         //  currentType is in HOUR
@@ -68,18 +77,21 @@ void ariel::PhysicalNumber::addEqualTime(PhysicalNumber &other)
             // otherType is in MIN
             if (otherType == 4)
             {
-                value = value + (other.getValue()) * 0.01667;
+                v = value + (other.getValue()) * 0.01667;
+                // return v;
             }
             // otherType is in SEC
             else
             {
-                value = value + (other.getValue()) * 0.0002777;
+                v = value + (other.getValue()) * 0.0002777;
+                // return v;
             }
         }
         // currentType is in MIN and otherType is in SEC
         else
         {
-            value = value + (other.getValue()) * 0.01667;
+            v = value + (other.getValue()) * 0.01667;
+            // return v;
         }
     }
     else
@@ -90,25 +102,32 @@ void ariel::PhysicalNumber::addEqualTime(PhysicalNumber &other)
             // currentType is in MIN
             if (currentType == 4)
             {
-                value = value + (other.getValue()) * 60;
+                v = value + (other.getValue()) * 60;
+                // return v;
             }
             // currenType is in SEC
             else
             {
-                value = value + (other.getValue()) * 3600;
+                v = value + (other.getValue()) * 3600;
+                // return v;
+
             }
         }
         // otherType is in MIN and currentType is in SEC
         else
         {
-            value = value + (other.getValue()) * 60;
+            v = value + (other.getValue()) * 60;
+            // return v;
         }
+        
     }
+    return v;
 }
-void ariel::PhysicalNumber::addEqualLength(PhysicalNumber &other)
+double ariel::PhysicalNumber::addLength(PhysicalNumber &other)
 {
     int currentType = (int)type;
     int otherType = (int)other.getType();
+    double v;
     if (currentType > otherType)
     {
         //  currentType is in KM
@@ -117,18 +136,21 @@ void ariel::PhysicalNumber::addEqualLength(PhysicalNumber &other)
             // otherType is in M
             if (otherType == 1)
             {
-                value = value + (other.getValue()) * 0.001;
+                v = value + (other.getValue()) * 0.001;
+                // return v;
             }
             // otherType is in CM
             else
             {
-                value = value + (other.getValue()) * 0.0001;
+                v = value + (other.getValue()) * 0.0001;
+                // return v;
             }
         }
         // currentType is in M and otherType is in CM
         else
         {
-            value = value + (other.getValue()) * 0.01;
+            v = value + (other.getValue()) * 0.01;
+            // return v;
         }
     }
     else
@@ -139,20 +161,25 @@ void ariel::PhysicalNumber::addEqualLength(PhysicalNumber &other)
             // currentType is in M
             if (currentType == 1)
             {
-                value = value + (other.getValue()) * 1000;
+                v = value + (other.getValue()) * 1000;
+                // return v;
             }
             // currenType is in CM
             else
             {
-                value = value + (other.getValue()) * 100000;
+                v = value + (other.getValue()) * 100000;
+                // return v;
             }
         }
         // otherType is in M and currentType is in CM
         else
         {
-            value = value + (other.getValue()) * 100;
+            v = value + (other.getValue()) * 100;
+            // return v;
         }
+        
     }
+    return v;
 }
 istream& ariel::PhysicalNumber::getAndCheckNextCharIs(istream& input, char expectedChar) {
     char actualChar;
