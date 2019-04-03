@@ -5,7 +5,7 @@
 //     delete type;
 // }
 
-void ariel::PhysicalNumber::addMass(PhysicalNumber &other)
+void ariel::PhysicalNumber::addEqualMass(PhysicalNumber &other)
 {
     int currentType = (int)type;
     int otherType = (int)other.getType();
@@ -56,7 +56,7 @@ void ariel::PhysicalNumber::addMass(PhysicalNumber &other)
     }
 }
 
-void ariel::PhysicalNumber::addTime(PhysicalNumber &other)
+void ariel::PhysicalNumber::addEqualTime(PhysicalNumber &other)
 {
     int currentType = (int)type;
     int otherType = (int)other.getType();
@@ -105,7 +105,7 @@ void ariel::PhysicalNumber::addTime(PhysicalNumber &other)
         }
     }
 }
-void ariel::PhysicalNumber::addLength(PhysicalNumber &other)
+void ariel::PhysicalNumber::addEqualLength(PhysicalNumber &other)
 {
     int currentType = (int)type;
     int otherType = (int)other.getType();

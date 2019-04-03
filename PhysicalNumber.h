@@ -13,16 +13,17 @@ private:
   Unit type;
 
   // private methods
-  void addMass(PhysicalNumber &other);
-  void addTime(PhysicalNumber &other);
-  void addLength(PhysicalNumber &other);
+  void addEqualMass(PhysicalNumber &other);
+  void addEqualTime(PhysicalNumber &other);
+  void addEqualLength(PhysicalNumber &other);
+  
 
 public:
-  double getValue()
+  double getValue() const
   {
     return value;
   }
-  Unit getType()
+  Unit getType() const
   {
     return type;
   }
@@ -39,15 +40,15 @@ public:
     {
       if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
       {
-        addLength(other);
+        addEqualLength(other);
       }
       else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
       {
-        addTime(other);
+        addEqualTime(other);
       }
       else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
       {
-        addMass(other);
+        addEqualMass(other);
       }
       else
       {
@@ -104,8 +105,11 @@ public:
   {
     return false;
   }
-  friend ostream &operator<<(ostream &os, const PhysicalNumber &c)
+  friend ostream& operator<<(ostream &os, const PhysicalNumber &pn) 
   {
+      double v = pn.getValue();
+      int t = (int)pn.getType();
+        return (os << v << ' ' << t << endl);
   }
   friend istream &operator>>(istream &is, PhysicalNumber &c)
   {
