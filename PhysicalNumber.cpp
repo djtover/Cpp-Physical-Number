@@ -154,3 +154,13 @@ void ariel::PhysicalNumber::addEqualLength(PhysicalNumber &other)
         }
     }
 }
+istream& ariel::PhysicalNumber::getAndCheckNextCharIs(istream& input, char expectedChar) {
+    char actualChar;
+    input >> actualChar;
+    if (!input) return input;
+
+    if (actualChar!=expectedChar) 
+        // failbit is for format error
+        input.setstate(ios::failbit);
+    return input;
+}

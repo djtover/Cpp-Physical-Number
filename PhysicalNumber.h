@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include "Unit.h"
 using namespace std;
 namespace ariel
@@ -16,7 +17,7 @@ private:
   void addEqualMass(PhysicalNumber &other);
   void addEqualTime(PhysicalNumber &other);
   void addEqualLength(PhysicalNumber &other);
-  
+  static istream &getAndCheckNextCharIs(istream &input, char expectedChar);
 
 public:
   double getValue() const
@@ -26,6 +27,57 @@ public:
   Unit getType() const
   {
     return type;
+  }
+  void setValue(double v) 
+  {
+    value = v;
+  }
+  void setType(string s) 
+  {
+    if (s == "cm")
+    {
+      type = Unit::CM;
+    }
+    else if (s == "m")
+    {
+      type = Unit::M;
+    }
+    else if (s == "km")
+    {
+      type = Unit::KM;
+    }
+    else if (s == "sec")
+    {
+      type = Unit::SEC;
+    }
+    else if (s == "min")
+    {
+      type = Unit::MIN;
+    }
+    else if (s == "hour")
+    {
+      type = Unit::HOUR;
+    }
+    else if (s == "g")
+    {
+      type = Unit::G;
+    }
+    else if (s == "kg")
+    {
+      type = Unit::KG;
+    }
+    else if (s == "ton")
+    {
+      type = Unit::TON;
+    }
+    else
+    {
+      throw std::out_of_range("Thats not a type");
+    }
+  }
+  void setType(Unit u) 
+  {
+    type = u;
   }
 
   PhysicalNumber operator+(PhysicalNumber &other)
@@ -61,7 +113,7 @@ public:
   {
     return *this;
   }
-  PhysicalNumber& operator+=(const PhysicalNumber &other)
+  PhysicalNumber &operator+=(const PhysicalNumber &other)
   {
     return *this;
   }
@@ -105,14 +157,39 @@ public:
   {
     return false;
   }
-  friend ostream& operator<<(ostream &os, const PhysicalNumber &pn) 
+  friend ostream &operator<<(ostream &os, const PhysicalNumber &pn)
   {
-      double v = pn.getValue();
-      int t = (int)pn.getType();
-        return (os << v << ' ' << t << endl);
+    double v = pn.getValue();
+    int t = (int)pn.getType();
+    return (os << v << ' ' << t << endl);
   }
-  friend istream &operator>>(istream &is, PhysicalNumber &c)
+  friend istream &operator>>(istream &input, PhysicalNumber &pn)
   {
+    double newValue;
+    string newType;
+
+    // remember place for rewinding
+    ios::pos_type startPosition = input.tellg();
+
+    if ((!(input >> newValue)) ||
+        (!getAndCheckNextCharIs(input, '[')) ||
+        (!(input >> newType)) ||
+        (!(getAndCheckNextCharIs(input, ']'))))
+    {
+
+      // rewind on error
+      auto errorState = input.rdstate(); // remember error state
+      input.clear();                     // clear error so seekg will work
+      input.seekg(startPosition);        // rewind
+      input.clear(errorState);           // set back the error flag
+    }
+    else
+    {
+     pn.setValue(newValue);
+     pn.setType(newType);
+    }
+
+    return input;
   }
 
   PhysicalNumber(int x, ariel::Unit u)
