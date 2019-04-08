@@ -20,11 +20,11 @@ private:
   static istream &getAndCheckNextCharIs(istream &input, char expectedChar);
 
 public:
-  double getValue() const
+  double getValue() 
   {
     return value;
   }
-  Unit getType() const
+  Unit getType() 
   {
     return type;
   }
@@ -80,113 +80,33 @@ public:
     type = u;
   }
 
-  PhysicalNumber operator+(PhysicalNumber other)
-  {
-    int currentType = (int)type;
-    int otherType = (int)other.getType();
-    double v;
-    if (currentType == otherType)
-    {
-      v = value + other.getValue();
-    }
-    else
-    {
-      if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      {
-       v = addLength(other);
-      }
-      else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      {
-        v = addTime(other);
-      }
-      else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      {
-        v = addMass(other);
-      }
-      else
-      {
-        throw std::out_of_range("Different units");
-      }
-    }
-    return PhysicalNumber(v, type);
-  }
-  PhysicalNumber operator+()
-  {
-    return *this;
-  }
-  PhysicalNumber operator+=(PhysicalNumber other) 
-  {
-      int currentType = (int)type;
-    int otherType = (int)other.getType();
-   
-    if (currentType == otherType)
-    {
-      value = value + other.getValue();
-    }
-    else
-    {
-      if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      {
-        value = addLength(other);
-        
-      }
-      else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      {
-       value = addTime(other);
-      }
-      else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      {
-        value = addMass(other);
-      }
-      else
-      {
-        cout << currentType << "," << otherType << endl;
-        throw std::out_of_range("Different units");
-      }
-    }
-    return *this;
-  }
-  PhysicalNumber &operator++()
-  {
-    return *this;
-  }
-  PhysicalNumber operator-(const PhysicalNumber &other)
-  {
-    return *this;
-  }
-  PhysicalNumber operator-()
-  {
-    return *this;
-  }
-  PhysicalNumber &operator-=(const PhysicalNumber &other)
-  {
-    return *this;
-  }
-  PhysicalNumber &operator--()
-  {
-    return *this;
-  }
-  bool operator<(const PhysicalNumber &other)
-  {
-    return false;
-  }
-  bool operator<=(const PhysicalNumber &other)
-  {
-    return false;
-  }
-  bool operator>(const PhysicalNumber &other)
-  {
-    return false;
-  }
-  bool operator>=(const PhysicalNumber &other)
-  {
-    return false;
-  }
-  bool operator==(const PhysicalNumber &other)
-  {
-    return false;
-  }
-  friend ostream &operator<<(ostream &os, const PhysicalNumber &pn)
+  PhysicalNumber operator+(PhysicalNumber other);
+
+  PhysicalNumber operator+();
+  
+  PhysicalNumber operator+=(PhysicalNumber other); 
+  
+  PhysicalNumber operator++();
+ 
+  PhysicalNumber operator-( PhysicalNumber other);
+  
+  PhysicalNumber operator-();
+  
+  PhysicalNumber operator-=(PhysicalNumber other);
+  
+  PhysicalNumber operator--();
+  
+  bool operator<(PhysicalNumber other);
+  
+  bool operator<=(PhysicalNumber other);
+  
+  bool operator>(PhysicalNumber other);
+
+  bool operator>=( PhysicalNumber other);
+  
+  bool operator==( PhysicalNumber other);
+
+  friend ostream &operator<<(ostream &os, PhysicalNumber pn)
   {
     double v = pn.getValue();
     int s = (int)pn.getType();
@@ -231,7 +151,7 @@ public:
       throw std::out_of_range("Thats not a type");
     }
   }
-  friend istream &operator>>(istream &input, PhysicalNumber &pn)
+  friend istream &operator>>(istream &input, PhysicalNumber pn)
   {
     double newValue;
     string newType;
