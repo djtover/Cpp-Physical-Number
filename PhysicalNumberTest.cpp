@@ -179,7 +179,7 @@ int main() {
     .CHECK_THROWS(x6-x8)
     .CHECK_THROWS(x6-x9) 
 
-           .setname("Compatible Dimensions on time")
+      .setname("Compatible Dimensions on time")
       .CHECK_OUTPUT(x7,"4[g]")
       .CHECK_OUTPUT(x8,"4[kg]")
       .CHECK_OUTPUT(x9,"4[ton]")
