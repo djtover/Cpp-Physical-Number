@@ -141,7 +141,7 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
       }
       else
       {
-        cout << currentType << "," << otherType << endl;
+        // cout << currentType << "," << otherType << endl;
         throw std::out_of_range("Different units");
       }
     }
@@ -335,6 +335,7 @@ double PhysicalNumber::addLength(PhysicalNumber other)
         }
         
     }
+    
     return v;
 }
 
