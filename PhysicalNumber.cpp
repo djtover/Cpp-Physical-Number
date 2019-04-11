@@ -40,7 +40,7 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
 
   PhysicalNumber PhysicalNumber::operator+()
   {
-    return *this;
+    return PhysicalNumber(value,type);
   }
   PhysicalNumber PhysicalNumber::operator+=(PhysicalNumber other) 
   {
@@ -116,7 +116,7 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   PhysicalNumber PhysicalNumber::operator-()
   {
-    return *this;
+    return PhysicalNumber(-value,type);
   }
   PhysicalNumber PhysicalNumber::operator-=(PhysicalNumber other)
   {
@@ -162,7 +162,39 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   bool PhysicalNumber::operator<(PhysicalNumber other)
   {
-    return false;
+    int currentType = (int)type;
+    int otherType = (int)other.getType();
+    bool ans;
+    double v;
+   
+    if (currentType == otherType)
+    {
+      ans = value < other.getValue() ? true: false;  
+    }
+    else
+    {
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+        v = sameTypeValue(*this, other);
+        
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = sameTypeValue(*this, other);
+
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = sameTypeValue(*this, other);
+      // }
+      // else
+      // {
+      //   // cout << currentType << "," << otherType << endl;
+      //   throw std::out_of_range("Different units");
+      // }
+       ans = value < v ? true: false;  
+    }
+    return ans;
   }
   bool PhysicalNumber::operator<=(PhysicalNumber other)
   {
@@ -170,7 +202,40 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   bool PhysicalNumber::operator>(PhysicalNumber other)
   {
-    return false;
+    // return false;
+     int currentType = (int)type;
+    int otherType = (int)other.getType();
+    bool ans;
+    double v;
+   
+    if (currentType == otherType)
+    {
+      ans = value > other.getValue() ? true: false;  
+    }
+    else
+    {
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+        v = sameTypeValue(*this, other);
+        
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = sameTypeValue(*this, other);
+
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = sameTypeValue(*this, other);
+      // }
+      // else
+      // {
+      //   // cout << currentType << "," << otherType << endl;
+      //   throw std::out_of_range("Different units");
+      // }
+       ans = value > v ? true: false;  
+    }
+    return ans;
   }
   bool PhysicalNumber::operator>=( PhysicalNumber other)
   {
@@ -502,6 +567,119 @@ double PhysicalNumber::addLength(PhysicalNumber other)
     return v;
 
   }
+
+double PhysicalNumber::sameTypeValue(PhysicalNumber a , PhysicalNumber b){
+    int t1 = (int) a.getType();
+    int t2 = (int) b.getType();
+    double v;
+    switch(t1){
+      case (0):
+      if(t2 == 1){
+        v = b.getValue()*100;
+      }
+      else if(t2 == 2){
+        v = b.getValue()*1000;
+      }
+      else{
+        throw std::out_of_range("Different units");
+      }
+      
+      break;
+       case (1):
+      if(t2 == 0){
+        v = b.getValue()*0.01;
+      }
+      else if (t2==2){
+        v = b.getValue()*1000;
+      }
+        else{
+        throw std::out_of_range("Different units");
+      }
+      
+      break;
+       case (2):
+      if(t2 == 0){
+        v = b.getValue()*0.00001;
+      }
+      else if(t2 ==1){
+        v = b.getValue()*0.001;
+      }
+       else{
+        throw std::out_of_range("Different units");
+      }
+      
+      break;
+       case (3):
+      if(t2 == 4){
+        v = b.getValue()*60;
+      }
+      else if(t2 == 5){
+        v = b.getValue()*3600;
+      }
+      else{
+        throw std::out_of_range("Different units");
+      }
+      break;
+       case (4):
+      if(t2 == 3){
+        v = b.getValue()*0.01667;
+      }
+      else if (t2 ==5){
+        v = b.getValue()*60;
+      }
+       else{
+        throw std::out_of_range("Different units");
+      }
+      break;
+       case (5):
+      if(t2 == 3){
+        v = b.getValue()*0.0002777;
+      }
+      else if(t2 ==4){
+        v = b.getValue()*0.01667;
+      }
+       else{
+        throw std::out_of_range("Different units");
+      }
+      break;
+       case (6):
+      if(t2 == 7){
+        v = b.getValue()*1000;
+      }
+      else if(t2 == 8){
+        v = b.getValue()*1000000;
+      }
+       else{
+        throw std::out_of_range("Different units");
+      }
+      break;
+       case (7):
+      if(t2 == 6){
+        v = b.getValue()*0.001;
+      }
+      else if (t2 == 8){
+        v = b.getValue()*1000;
+      }
+       else{
+        throw std::out_of_range("Different units");
+      }
+      break;
+       case (8):
+      if(t2 == 6){
+        v = b.getValue()*0.000001;
+      }
+      else if (t2 == 7){
+        v = b.getValue()*0.001;
+      }
+       else{
+        throw std::out_of_range("Different units");
+      }
+      break;
+      
+    }
+    return v;
+}
+
 istream& PhysicalNumber::getAndCheckNextCharIs(istream& input, char expectedChar) {
     char actualChar;
     input >> actualChar;

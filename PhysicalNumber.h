@@ -20,6 +20,9 @@ private:
   double subMass(PhysicalNumber other);
   double subTime(PhysicalNumber other);
   double subLength(PhysicalNumber other);
+ double sameTypeValue(PhysicalNumber a , PhysicalNumber b);
+
+
 
   static istream &getAndCheckNextCharIs(istream &input, char expectedChar);
 
