@@ -75,10 +75,13 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   PhysicalNumber PhysicalNumber::operator++()
   {
+    value++;
     return *this;
   }
   PhysicalNumber PhysicalNumber::operator++(int other){
-    return *this;
+    PhysicalNumber temp = *this;
+    value++;
+    return temp;
   }
   PhysicalNumber PhysicalNumber::operator-( PhysicalNumber other)
   {
@@ -149,10 +152,13 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   PhysicalNumber PhysicalNumber::operator--()
   {
+    value--;
     return *this;
   }
   PhysicalNumber PhysicalNumber::operator--(int other){
-    return *this;
+    PhysicalNumber temp = *this;
+    value--;
+    return temp;
   }
   bool PhysicalNumber::operator<(PhysicalNumber other)
   {

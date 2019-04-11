@@ -510,6 +510,53 @@ int main() {
 .CHECK_THROWS(x9 -= PhysicalNumber(4, Unit::M))
 .CHECK_THROWS(x9 -= PhysicalNumber(4, Unit::KM))
 
+.setname("Plus Plus and Minus Minus for meters")
+.CHECK_OUTPUT(++x1,"5[cm]")
+.CHECK_OUTPUT(x1++,"5[cm]")
+.CHECK_OUTPUT(--x1,"5[cm]")
+.CHECK_OUTPUT(x1--,"5[cm]")
+
+.CHECK_OUTPUT(++x2,"5[m]")
+.CHECK_OUTPUT(x2++,"5[m]")
+.CHECK_OUTPUT(--x2,"5[m]")
+.CHECK_OUTPUT(x2++,"5[m]")
+
+.CHECK_OUTPUT(++x3,"5[km]")
+.CHECK_OUTPUT(x3++,"5[km]")
+.CHECK_OUTPUT(--x3,"5[km]")
+.CHECK_OUTPUT(x3++,"5[km]")
+
+.setname("Plus Plus and Minus Minus for time")
+.CHECK_OUTPUT(++x4,"5[sec]")
+.CHECK_OUTPUT(x4++,"5[sec]")
+.CHECK_OUTPUT(--x4,"5[sec]")
+.CHECK_OUTPUT(x4--,"5[sec]")
+
+.CHECK_OUTPUT(++x5,"5[min]")
+.CHECK_OUTPUT(x5++,"5[min]")
+.CHECK_OUTPUT(--x5,"5[min]")
+.CHECK_OUTPUT(x5--,"5[min]")
+
+.CHECK_OUTPUT(++x6,"5[hour]")
+.CHECK_OUTPUT(x6++,"5[hour]")
+.CHECK_OUTPUT(--x6,"5[hour]")
+.CHECK_OUTPUT(x6--,"5[hour]")
+
+.setname("Plus Plus and Minus Minus for mass")
+.CHECK_OUTPUT(++x7,"5[g]")
+.CHECK_OUTPUT(x7++,"5[g]")
+.CHECK_OUTPUT(--x7,"5[g]")
+.CHECK_OUTPUT(x7--,"5[g]")
+
+.CHECK_OUTPUT(++x8,"5[kg]")
+.CHECK_OUTPUT(x8++,"5[kg]")
+.CHECK_OUTPUT(--x8,"5[kg]")
+.CHECK_OUTPUT(x8--,"5[kg]")
+
+.CHECK_OUTPUT(++x9,"5[ton]")
+.CHECK_OUTPUT(x9++,"5[ton]")
+.CHECK_OUTPUT(--x9,"5[ton]")
+.CHECK_OUTPUT(x9--,"5[ton]")
 
 
       .print(cout, /*show_grade=*/false);
