@@ -78,6 +78,9 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   {
     return *this;
   }
+  PhysicalNumber PhysicalNumber::operator++(int other){
+    return *this;
+  }
   PhysicalNumber PhysicalNumber::operator-( PhysicalNumber other)
   {
     return *this;
@@ -92,6 +95,9 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   PhysicalNumber PhysicalNumber::operator--()
   {
+    return *this;
+  }
+  PhysicalNumber PhysicalNumber::operator--(int other){
     return *this;
   }
   bool PhysicalNumber::operator<(PhysicalNumber other)
@@ -112,6 +118,9 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   bool PhysicalNumber::operator==( PhysicalNumber other)
   {
+    return false;
+  }
+  bool PhysicalNumber::operator!=( PhysicalNumber other){
     return false;
   }
 

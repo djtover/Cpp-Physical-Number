@@ -87,14 +87,18 @@ public:
   PhysicalNumber operator+=(PhysicalNumber other); 
   
   PhysicalNumber operator++();
+
+  PhysicalNumber operator++(int other);
  
-  PhysicalNumber operator-( PhysicalNumber other);
+  PhysicalNumber operator-(PhysicalNumber other);
   
   PhysicalNumber operator-();
   
   PhysicalNumber operator-=(PhysicalNumber other);
   
   PhysicalNumber operator--();
+
+  PhysicalNumber operator--(int other);
   
   bool operator<(PhysicalNumber other);
   
@@ -105,6 +109,8 @@ public:
   bool operator>=( PhysicalNumber other);
   
   bool operator==( PhysicalNumber other);
+
+  bool operator!=( PhysicalNumber other);
 
   friend ostream &operator<<(ostream &os, PhysicalNumber pn)
   {
