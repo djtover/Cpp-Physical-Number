@@ -14,12 +14,21 @@ private:
   Unit type;
 
   // private methods
-  double addMass(PhysicalNumber &other);
-  double addTime(PhysicalNumber &other);
-  double addLength(PhysicalNumber &other);
+  double addMass(PhysicalNumber other);
+  double addTime(PhysicalNumber other);
+  double addLength(PhysicalNumber other);
+  double subMass(PhysicalNumber other);
+  double subTime(PhysicalNumber other);
+  double subLength(PhysicalNumber other);
+
   static istream &getAndCheckNextCharIs(istream &input, char expectedChar);
 
 public:
+ PhysicalNumber(double x, ariel::Unit u)
+  {
+    value = x;
+    type = u;
+  }
   double getValue() 
   {
     return value;
@@ -34,39 +43,40 @@ public:
   }
   void setType(string s) 
   {
-    if (s == "cm")
+    if (s == "cm]")
     {
       type = Unit::CM;
     }
-    else if (s == "m")
+    else if (s == "m]")
     {
       type = Unit::M;
     }
-    else if (s == "km")
+    else if (s == "km]")
     {
       type = Unit::KM;
     }
-    else if (s == "sec")
+    else if (s == "sec]")
     {
       type = Unit::SEC;
     }
-    else if (s == "min")
+    else if (s == "min]")
     {
       type = Unit::MIN;
     }
-    else if (s == "hour")
+    else if (s == "hour]")
     {
       type = Unit::HOUR;
     }
-    else if (s == "g")
+    else if (s == "g]")
     {
       type = Unit::G;
     }
-    else if (s == "kg")
+    else if (s == "kg]")
     {
       type = Unit::KG;
+      // cout << (int)this->getType() << " is type num"<<endl;
     }
-    else if (s == "ton")
+    else if (s == "ton]")
     {
       type = Unit::TON;
     }
@@ -114,6 +124,7 @@ public:
 
   friend ostream &operator<<(ostream &os, PhysicalNumber pn)
   {
+   os.precision(7);
     double v = pn.getValue();
     int s = (int)pn.getType();
       if (s == 0)
@@ -157,21 +168,22 @@ public:
       throw std::out_of_range("Thats not a type");
     }
   }
-  friend istream &operator>>(istream &input, PhysicalNumber pn)
+  friend istream &operator>>(istream &input, PhysicalNumber &pn)
   {
     double newValue;
     string newType;
 
     // remember place for rewinding
-    ios::pos_type startPosition = input.tellg();
+     ios::pos_type startPosition = input.tellg();
 
     if ((!(input >> newValue)) ||
         (!getAndCheckNextCharIs(input, '[')) ||
-        (!(input >> newType))
-        || (!(getAndCheckNextCharIs(input, ']'))))
+        (!(input >> newType))) //|| 
+        //(!getAndCheckNextCharIs(input, ']')))
     {
       
-
+      // cout<< newValue<< "is new value"<< endl;
+      // cout<< newType<< "is new value"<< endl;
       // rewind on error
       auto errorState = input.rdstate(); // remember error state
       input.clear();                     // clear error so seekg will work
@@ -181,19 +193,20 @@ public:
     else
     {
      pn.setValue(newValue);
-     cout << pn.getValue() << endl;
      pn.setType(newType);
-     cout << (int)pn.getType() << endl;
+      // cout<< pn<< "is new value"<< endl;
+      // cout<< pn.getType()<< "is new value"<< endl;
+     
     }
 
     return input;
   }
 
-  PhysicalNumber(double x, ariel::Unit u)
-  {
-    PhysicalNumber::value = x;
-    PhysicalNumber::type = u;
-  }
+  // PhysicalNumber(double x, ariel::Unit u)
+  // {
+  //   value = x;
+  //   type = u;
+  // }
   // ~PhysicalNumber();
 };
 }; // namespace ariel
