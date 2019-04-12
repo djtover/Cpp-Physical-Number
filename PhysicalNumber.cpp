@@ -12,28 +12,31 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     int currentType = (int)type;
     int otherType = (int)other.getType();
     double v;
+    double ret;
     if (currentType == otherType)
     {
       v = value + other.getValue();
     }
     else
     {
-      if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      {
-       v = addLength(other);
-      }
-      else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      {
-        v = addTime(other);
-      }
-      else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      {
-        v = addMass(other);
-      }
-      else
-      {
-        throw std::out_of_range("Different units");
-      }
+      ret = sameTypeValue(*this,other);
+      v = value + ret;
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+      //  v = addLength(other);
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = addTime(other);
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = addMass(other);
+      // }
+      // else
+      // {
+      //   throw std::out_of_range("Different units");
+      // }
     }
     return PhysicalNumber(v, type);
   }
@@ -46,30 +49,32 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   {
     int currentType = (int)type;
     int otherType = (int)other.getType();
-   
+    double ret;
     if (currentType == otherType)
     {
       value = value + other.getValue();
     }
     else
     {
-      if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      {
-        value = addLength(other);
+      ret = sameTypeValue(*this,other);
+      value += ret;
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+      //   value = addLength(other);
         
-      }
-      else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      {
-       value = addTime(other);
-      }
-      else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      {
-        value = addMass(other);
-      }
-      else
-      {
-        throw std::out_of_range("Different units");
-      }
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //  value = addTime(other);
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   value = addMass(other);
+      // }
+      // else
+      // {
+      //   throw std::out_of_range("Different units");
+      // }
     }
     return *this;
   }
@@ -88,31 +93,34 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     int currentType = (int)type;
     int otherType = (int)other.getType();
     double v;
+    double ret;
     if (currentType == otherType)
     {
       v = value - other.getValue();
     }
     else
     {
-      if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      {
-       v = subLength(other);
-      }
-      else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      {
-        v = subTime(other);
-      }
-      else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      {
-        v = subMass(other);
-      }
-      else
-      {
-        throw std::out_of_range("Different units");
-      }
+      ret = sameTypeValue(*this,other);
+      v = value - ret;
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+      //  v = subLength(other);
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = subTime(other);
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = subMass(other);
+      // }
+      // else
+      // {
+      //   throw std::out_of_range("Different units");
+      // }
     }
     return PhysicalNumber(v, type);
-    // return *this;
+    
   }
   PhysicalNumber PhysicalNumber::operator-()
   {
@@ -122,31 +130,32 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   {
       int currentType = (int)type;
     int otherType = (int)other.getType();
-   
+   double ret;
     if (currentType == otherType)
     {
       value = value - other.getValue();
     }
     else
     {
-      if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      {
-        value = subLength(other);
+      ret = sameTypeValue(*this,other);
+      value -= ret;
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+      //   value = subLength(other);
         
-      }
-      else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      {
-       value = subTime(other);
-      }
-      else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      {
-        value = subMass(other);
-      }
-      else
-      {
-        // cout << currentType << "," << otherType << endl;
-        throw std::out_of_range("Different units");
-      }
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //  value = subTime(other);
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   value = subMass(other);
+      // }
+      // else
+      // {
+      //   throw std::out_of_range("Different units");
+      // }
     }
     return *this;
   }
@@ -173,25 +182,7 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     }
     else
     {
-      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      // {
         v = sameTypeValue(*this, other);
-        
-      // }
-      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      // {
-      //   v = sameTypeValue(*this, other);
-
-      // }
-      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      // {
-      //   v = sameTypeValue(*this, other);
-      // }
-      // else
-      // {
-      //   // cout << currentType << "," << otherType << endl;
-      //   throw std::out_of_range("Different units");
-      // }
        ans = value < v ? true: false;  
     }
     return ans;
@@ -209,32 +200,17 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     }
     else
     {
-      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      // {
+    
         v = sameTypeValue(*this, other);
         
-      // }
-      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      // {
-      //   v = sameTypeValue(*this, other);
-
-      // }
-      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      // {
-      //   v = sameTypeValue(*this, other);
-      // }
-      // else
-      // {
-      //   // cout << currentType << "," << otherType << endl;
-      //   throw std::out_of_range("Different units");
-      // }
+      
        ans = value <= v ? true: false;  
     }
     return ans;
   }
   bool PhysicalNumber::operator>(PhysicalNumber other)
   {
-    // return false;
+    
      int currentType = (int)type;
     int otherType = (int)other.getType();
     bool ans;
@@ -246,25 +222,10 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     }
     else
     {
-      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      // {
+     
         v = sameTypeValue(*this, other);
         
-      // }
-      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      // {
-      //   v = sameTypeValue(*this, other);
 
-      // }
-      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      // {
-      //   v = sameTypeValue(*this, other);
-      // }
-      // else
-      // {
-      //   // cout << currentType << "," << otherType << endl;
-      //   throw std::out_of_range("Different units");
-      // }
        ans = value > v ? true: false;  
     }
     return ans;
@@ -282,25 +243,7 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     }
     else
     {
-      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      // {
         v = sameTypeValue(*this, other);
-        
-      // }
-      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      // {
-      //   v = sameTypeValue(*this, other);
-
-      // }
-      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      // {
-      //   v = sameTypeValue(*this, other);
-      // }
-      // else
-      // {
-      //   // cout << currentType << "," << otherType << endl;
-      //   throw std::out_of_range("Different units");
-      // }
        ans = value >= v ? true: false;  
     }
     return ans;
@@ -318,25 +261,7 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     }
     else
     {
-      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      // {
         v = sameTypeValue(*this, other);
-        
-      // }
-      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      // {
-      //   v = sameTypeValue(*this, other);
-
-      // }
-      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      // {
-      //   v = sameTypeValue(*this, other);
-      // }
-      // else
-      // {
-      //   // cout << currentType << "," << otherType << endl;
-      //   throw std::out_of_range("Different units");
-      // }
        ans = value == v ? true: false;  
     }
     return ans;
@@ -353,25 +278,7 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
     }
     else
     {
-      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
-      // {
-        v = sameTypeValue(*this, other);
-        
-      // }
-      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
-      // {
-      //   v = sameTypeValue(*this, other);
-
-      // }
-      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
-      // {
-      //   v = sameTypeValue(*this, other);
-      // }
-      // else
-      // {
-      //   // cout << currentType << "," << otherType << endl;
-      //   throw std::out_of_range("Different units");
-      // }
+      v = sameTypeValue(*this, other);
        ans = value != v ? true: false;  
     }
     return ans;
@@ -706,7 +613,7 @@ double PhysicalNumber::sameTypeValue(PhysicalNumber a , PhysicalNumber b){
         v = b.getValue()*100;
       }
       else if(t2 == 2){
-        v = b.getValue()*1000;
+        v = b.getValue()*100000;
       }
       else{
         throw std::out_of_range("Different units");
