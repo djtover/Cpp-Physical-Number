@@ -198,7 +198,39 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   bool PhysicalNumber::operator<=(PhysicalNumber other)
   {
-    return false;
+     int currentType = (int)type;
+    int otherType = (int)other.getType();
+    bool ans;
+    double v;
+   
+    if (currentType == otherType)
+    {
+      ans = value <= other.getValue() ? true: false;  
+    }
+    else
+    {
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+        v = sameTypeValue(*this, other);
+        
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = sameTypeValue(*this, other);
+
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = sameTypeValue(*this, other);
+      // }
+      // else
+      // {
+      //   // cout << currentType << "," << otherType << endl;
+      //   throw std::out_of_range("Different units");
+      // }
+       ans = value <= v ? true: false;  
+    }
+    return ans;
   }
   bool PhysicalNumber::operator>(PhysicalNumber other)
   {
@@ -239,14 +271,110 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   bool PhysicalNumber::operator>=( PhysicalNumber other)
   {
-    return false;
+     int currentType = (int)type;
+    int otherType = (int)other.getType();
+    bool ans;
+    double v;
+   
+    if (currentType == otherType)
+    {
+      ans = value >= other.getValue() ? true: false;  
+    }
+    else
+    {
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+        v = sameTypeValue(*this, other);
+        
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = sameTypeValue(*this, other);
+
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = sameTypeValue(*this, other);
+      // }
+      // else
+      // {
+      //   // cout << currentType << "," << otherType << endl;
+      //   throw std::out_of_range("Different units");
+      // }
+       ans = value >= v ? true: false;  
+    }
+    return ans;
   }
   bool PhysicalNumber::operator==( PhysicalNumber other)
   {
-    return false;
+     int currentType = (int)type;
+    int otherType = (int)other.getType();
+    bool ans;
+    double v;
+   
+    if (currentType == otherType)
+    {
+      ans = value == other.getValue() ? true: false;  
+    }
+    else
+    {
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+        v = sameTypeValue(*this, other);
+        
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = sameTypeValue(*this, other);
+
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = sameTypeValue(*this, other);
+      // }
+      // else
+      // {
+      //   // cout << currentType << "," << otherType << endl;
+      //   throw std::out_of_range("Different units");
+      // }
+       ans = value == v ? true: false;  
+    }
+    return ans;
   }
   bool PhysicalNumber::operator!=( PhysicalNumber other){
-    return false;
+     int currentType = (int)type;
+    int otherType = (int)other.getType();
+    bool ans;
+    double v;
+   
+    if (currentType == otherType)
+    {
+      ans = value != other.getValue() ? true: false;  
+    }
+    else
+    {
+      // if ((currentType >= 0 && currentType <= 2) && otherType >= 0 && otherType <= 2)
+      // {
+        v = sameTypeValue(*this, other);
+        
+      // }
+      // else if ((currentType >= 3 && currentType <= 5) && otherType >= 3 && otherType <= 5)
+      // {
+      //   v = sameTypeValue(*this, other);
+
+      // }
+      // else if ((currentType >= 6 && currentType <= 8) && otherType >= 6 && otherType <= 8)
+      // {
+      //   v = sameTypeValue(*this, other);
+      // }
+      // else
+      // {
+      //   // cout << currentType << "," << otherType << endl;
+      //   throw std::out_of_range("Different units");
+      // }
+       ans = value != v ? true: false;  
+    }
+    return ans;
   }
 
 
