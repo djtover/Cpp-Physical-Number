@@ -75,7 +75,7 @@ public:
     }
     else
     {
-      throw std::out_of_range(s);
+      throw std::out_of_range("Thats not a type");
     }
   }
   void setType(Unit u)
