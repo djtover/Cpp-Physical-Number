@@ -58,9 +58,9 @@ int main() {
     .CHECK_THROWS(b+d)
 
     .setname("Basic input")
-    .CHECK_OK(istringstream("700.54[kg]") >> a)
-    .CHECK_OUTPUT(a,"700.54[kg]")
-    .CHECK_OUTPUT((a += PhysicalNumber(1, Unit::TON)), "1700.54[kg]")
+    .CHECK_OK(istringstream("700[kgg]") >> a)
+    .CHECK_OUTPUT(a,"700[kg]")
+    .CHECK_OUTPUT((a += PhysicalNumber(1, Unit::TON)), "1700[kg]")
 
     // YOUR TESTS - INSERT AS MANY AS YOU WANT
 

@@ -186,8 +186,9 @@ public:
     }
     else
     {
-      pn.setValue(newValue);
       pn.setType(newType);
+      pn.setValue(newValue);
+      
       // cout<< pn<< "is new value"<< endl;
       // cout<< pn.getType()<< "is new value"<< endl;
     }
