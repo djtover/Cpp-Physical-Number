@@ -35,7 +35,7 @@ public:
   {
     value = v;
   }
-  void setType(string s, double v)
+  void setType(string s)
   {
     if (s == "cm]")
     {
@@ -75,7 +75,7 @@ public:
     }
     else
     {
-      throw std::out_of_range("Input was:"+v+"["+s);
+      throw std::out_of_range("Thats not a type");
     }
   }
   void setType(Unit u)
@@ -183,7 +183,7 @@ public:
     }
     else
     {
-      pn.setType(newType, newValue);
+      pn.setType(newType);
       pn.setValue(newValue);
     }
 
