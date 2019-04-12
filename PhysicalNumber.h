@@ -14,12 +14,6 @@ private:
   Unit type;
 
   // private methods
-  double addMass(PhysicalNumber other);
-  double addTime(PhysicalNumber other);
-  double addLength(PhysicalNumber other);
-  double subMass(PhysicalNumber other);
-  double subTime(PhysicalNumber other);
-  double subLength(PhysicalNumber other);
  double sameTypeValue(PhysicalNumber a , PhysicalNumber b);
 
 
