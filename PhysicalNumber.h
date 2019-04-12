@@ -183,8 +183,13 @@ public:
     }
     else
     {
+      try{
       pn.setType(newType);
       pn.setValue(newValue);
+      }
+      catch (std::exception& ex) {
+	 	cout << "   caught exception: " << ex.what() << endl;
+	}
     }
 
     return input;
