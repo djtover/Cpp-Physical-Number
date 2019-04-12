@@ -118,7 +118,7 @@ public:
 
   friend ostream &operator<<(ostream &os, PhysicalNumber pn)
   {
-    os.precision(7);
+    os.precision(6);
     double v = pn.getValue();
     int s = (int)pn.getType();
     if (s == 0)
