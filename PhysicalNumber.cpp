@@ -52,7 +52,7 @@ PhysicalNumber PhysicalNumber::operator++()
 PhysicalNumber PhysicalNumber::operator++(int other)
 {
   PhysicalNumber temp = *this;
-  value++;
+  ++value;
   return temp;
 }
 PhysicalNumber PhysicalNumber::operator-(PhysicalNumber other)
