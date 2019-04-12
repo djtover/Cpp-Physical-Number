@@ -44,7 +44,7 @@ PhysicalNumber PhysicalNumber::operator+=(PhysicalNumber other)
   }
   return *this;
 }
-PhysicalNumber PhysicalNumber::operator++()
+PhysicalNumber& PhysicalNumber::operator++()
 {
   value++;
   return *this;
@@ -94,7 +94,7 @@ PhysicalNumber PhysicalNumber::operator-=(PhysicalNumber other)
   }
   return *this;
 }
-PhysicalNumber PhysicalNumber::operator--()
+PhysicalNumber& PhysicalNumber::operator--()
 {
   value--;
   return *this;

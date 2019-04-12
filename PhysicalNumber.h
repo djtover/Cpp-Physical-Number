@@ -90,7 +90,7 @@ public:
 
   PhysicalNumber operator+=(PhysicalNumber other);
 
-  PhysicalNumber operator++();
+  PhysicalNumber& operator++();
 
   PhysicalNumber operator++(int other);
 
@@ -100,7 +100,7 @@ public:
 
   PhysicalNumber operator-=(PhysicalNumber other);
 
-  PhysicalNumber operator--();
+  PhysicalNumber& operator--();
 
   PhysicalNumber operator--(int other);
 
