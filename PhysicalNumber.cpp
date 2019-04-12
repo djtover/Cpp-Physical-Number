@@ -2,10 +2,8 @@
 #include "PhysicalNumber.h"
 #include <stdexcept>
 using namespace ariel;
-// ariel::PhysicalNumber::~PhysicalNumber(){
-//     delete type;
-// }
 
+// This is an operator overload on addition
 PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -23,11 +21,12 @@ PhysicalNumber PhysicalNumber::operator+(PhysicalNumber other)
   }
   return PhysicalNumber(v, type);
 }
-
+// This is an operator overload on Unary+
 PhysicalNumber PhysicalNumber::operator+()
 {
   return PhysicalNumber(value, type);
 }
+// This is an operator overload on plus equals
 PhysicalNumber PhysicalNumber::operator+=(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -44,6 +43,7 @@ PhysicalNumber PhysicalNumber::operator+=(PhysicalNumber other)
   }
   return *this;
 }
+// This is an operator overload on plus plus prefix
 PhysicalNumber& PhysicalNumber::operator++()
 {
   value++;
@@ -51,12 +51,14 @@ PhysicalNumber& PhysicalNumber::operator++()
    
  
 }
+// This is an operator overload on plus plus postfix
 PhysicalNumber PhysicalNumber::operator++(int other)
 {
   PhysicalNumber temp = *this;
   ++value;
   return temp;
 }
+// This is an operator overload on subtraction
 PhysicalNumber PhysicalNumber::operator-(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -74,10 +76,12 @@ PhysicalNumber PhysicalNumber::operator-(PhysicalNumber other)
   }
   return PhysicalNumber(v, type);
 }
+// This is an operator overload on unary-
 PhysicalNumber PhysicalNumber::operator-()
 {
   return PhysicalNumber(-value, type);
 }
+// This is an operator overload on minus equals
 PhysicalNumber PhysicalNumber::operator-=(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -94,17 +98,20 @@ PhysicalNumber PhysicalNumber::operator-=(PhysicalNumber other)
   }
   return *this;
 }
+// This is an operator overload on decrement prefix
 PhysicalNumber& PhysicalNumber::operator--()
 {
   value--;
   return *this;
 }
+// This is an operator overload on decrement postfix
 PhysicalNumber PhysicalNumber::operator--(int other)
 {
   PhysicalNumber temp = *this;
   value--;
   return temp;
 }
+// This is an operator overload on less than
 bool PhysicalNumber::operator<(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -123,6 +130,7 @@ bool PhysicalNumber::operator<(PhysicalNumber other)
   }
   return ans;
 }
+// This is an operator overload on at most
 bool PhysicalNumber::operator<=(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -141,6 +149,7 @@ bool PhysicalNumber::operator<=(PhysicalNumber other)
   }
   return ans;
 }
+// This is an operator overload on greater than
 bool PhysicalNumber::operator>(PhysicalNumber other)
 {
 
@@ -160,6 +169,7 @@ bool PhysicalNumber::operator>(PhysicalNumber other)
   }
   return ans;
 }
+// This is an operator overload on at least
 bool PhysicalNumber::operator>=(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -178,6 +188,7 @@ bool PhysicalNumber::operator>=(PhysicalNumber other)
   }
   return ans;
 }
+// This is an operator overload on if they are equal
 bool PhysicalNumber::operator==(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -196,6 +207,7 @@ bool PhysicalNumber::operator==(PhysicalNumber other)
   }
   return ans;
 }
+// This is an operator overload on if they aren't equal
 bool PhysicalNumber::operator!=(PhysicalNumber other)
 {
   int currentType = (int)type;
@@ -214,7 +226,7 @@ bool PhysicalNumber::operator!=(PhysicalNumber other)
   }
   return ans;
 }
-
+// A private method to convert the type that is being compared to to the type the physical number has
 double PhysicalNumber::sameTypeValue(PhysicalNumber a, PhysicalNumber b)
 {
   int t1 = (int)a.getType();
@@ -356,7 +368,7 @@ double PhysicalNumber::sameTypeValue(PhysicalNumber a, PhysicalNumber b)
   }
   return v;
 }
-
+// A private method to get and check what the next char is
 istream &PhysicalNumber::getAndCheckNextCharIs(istream &input, char expectedChar)
 {
   char actualChar;

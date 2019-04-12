@@ -82,40 +82,39 @@ public:
   {
     type = u;
   }
-
-  PhysicalNumber
-  operator+(PhysicalNumber other);
-
+// Addition operator overload
+  PhysicalNumber operator+(PhysicalNumber other);
+// Unary+ operator overload
   PhysicalNumber operator+();
-
+// Increment with value operator overload
   PhysicalNumber operator+=(PhysicalNumber other);
-
+// Increment prefix operator overload
   PhysicalNumber& operator++();
-
+// increment postfix operator overload
   PhysicalNumber operator++(int other);
-
+// Subtraction operator overload
   PhysicalNumber operator-(PhysicalNumber other);
-
+// Unary- operator overload
   PhysicalNumber operator-();
-
+// Decrement with value operator overload
   PhysicalNumber operator-=(PhysicalNumber other);
-
+// Decrement prefix operator overload
   PhysicalNumber& operator--();
-
+// Decrement postfix  operator overload
   PhysicalNumber operator--(int other);
-
+// Less than operator overload
   bool operator<(PhysicalNumber other);
-
+// At most operator overload
   bool operator<=(PhysicalNumber other);
-
+// Greater than operator overload
   bool operator>(PhysicalNumber other);
-
+// At least operator overload
   bool operator>=(PhysicalNumber other);
-
+// Equal operator overload
   bool operator==(PhysicalNumber other);
-
+// Not equal operator overload
   bool operator!=(PhysicalNumber other);
-
+// Output stream method
   friend ostream &operator<<(ostream &os, PhysicalNumber pn)
   {
     os.precision(6);
@@ -162,6 +161,7 @@ public:
       throw std::out_of_range("Thats not a type");
     }
   }
+  // Input stream method
   friend istream &operator>>(istream &input, PhysicalNumber &pn)
   {
     double newValue;
@@ -194,6 +194,5 @@ public:
 
     return input;
   }
-  // ~PhysicalNumber();
 }; // namespace ariel
 }; // namespace ariel
