@@ -14,31 +14,28 @@ private:
   Unit type;
 
   // private methods
- double sameTypeValue(PhysicalNumber a , PhysicalNumber b);
-
-
-
+  double sameTypeValue(PhysicalNumber a, PhysicalNumber b);
   static istream &getAndCheckNextCharIs(istream &input, char expectedChar);
 
 public:
- PhysicalNumber(double x, ariel::Unit u)
+  PhysicalNumber(double x, ariel::Unit u)
   {
     value = x;
     type = u;
   }
-  double getValue() 
+  double getValue()
   {
     return value;
   }
-  Unit getType() 
+  Unit getType()
   {
     return type;
   }
-  void setValue(double v) 
+  void setValue(double v)
   {
     value = v;
   }
-  void setType(string s) 
+  void setType(string s)
   {
     if (s == "cm]")
     {
@@ -82,7 +79,7 @@ public:
       throw std::out_of_range("Thats not a type");
     }
   }
-  void setType(Unit u) 
+  void setType(Unit u)
   {
     type = u;
   }
@@ -90,75 +87,75 @@ public:
   PhysicalNumber operator+(PhysicalNumber other);
 
   PhysicalNumber operator+();
-  
-  PhysicalNumber operator+=(PhysicalNumber other); 
-  
+
+  PhysicalNumber operator+=(PhysicalNumber other);
+
   PhysicalNumber operator++();
 
   PhysicalNumber operator++(int other);
- 
+
   PhysicalNumber operator-(PhysicalNumber other);
-  
+
   PhysicalNumber operator-();
-  
+
   PhysicalNumber operator-=(PhysicalNumber other);
-  
+
   PhysicalNumber operator--();
 
   PhysicalNumber operator--(int other);
-  
+
   bool operator<(PhysicalNumber other);
-  
+
   bool operator<=(PhysicalNumber other);
-  
+
   bool operator>(PhysicalNumber other);
 
-  bool operator>=( PhysicalNumber other);
-  
-  bool operator==( PhysicalNumber other);
+  bool operator>=(PhysicalNumber other);
 
-  bool operator!=( PhysicalNumber other);
+  bool operator==(PhysicalNumber other);
+
+  bool operator!=(PhysicalNumber other);
 
   friend ostream &operator<<(ostream &os, PhysicalNumber pn)
   {
-   os.precision(7);
+    os.precision(7);
     double v = pn.getValue();
     int s = (int)pn.getType();
-      if (s == 0)
+    if (s == 0)
     {
-    return (os << v << "[cm]"); 
-       }
+      return (os << v << "[cm]");
+    }
     else if (s == 1)
     {
-    return (os << v << "[m]"); 
+      return (os << v << "[m]");
     }
     else if (s == 2)
     {
-    return (os << v << "[km]"); 
+      return (os << v << "[km]");
     }
     else if (s == 3)
     {
-    return (os << v << "[sec]"); 
+      return (os << v << "[sec]");
     }
     else if (s == 4)
     {
-    return (os << v << "[min]"); 
+      return (os << v << "[min]");
     }
     else if (s == 5)
     {
-    return (os << v << "[hour]"); 
+      return (os << v << "[hour]");
     }
     else if (s == 6)
     {
-    return (os << v << "[g]"); 
+      return (os << v << "[g]");
     }
     else if (s == 7)
     {
-    return (os << v << "[kg]"); 
+      return (os << v << "[kg]");
     }
     else if (s == 8)
     {
-    return (os << v << "[ton]"); 
+      return (os << v << "[ton]");
     }
     else
     {
@@ -171,14 +168,14 @@ public:
     string newType;
 
     // remember place for rewinding
-     ios::pos_type startPosition = input.tellg();
+    ios::pos_type startPosition = input.tellg();
 
     if ((!(input >> newValue)) ||
         (!getAndCheckNextCharIs(input, '[')) ||
-        (!(input >> newType))) //|| 
-        //(!getAndCheckNextCharIs(input, ']')))
+        (!(input >> newType))) //||
+                               //(!getAndCheckNextCharIs(input, ']')))
     {
-      
+
       // cout<< newValue<< "is new value"<< endl;
       // cout<< newType<< "is new value"<< endl;
       // rewind on error
@@ -189,11 +186,10 @@ public:
     }
     else
     {
-     pn.setValue(newValue);
-     pn.setType(newType);
+      pn.setValue(newValue);
+      pn.setType(newType);
       // cout<< pn<< "is new value"<< endl;
       // cout<< pn.getType()<< "is new value"<< endl;
-     
     }
 
     return input;
