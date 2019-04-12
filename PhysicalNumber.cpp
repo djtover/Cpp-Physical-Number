@@ -46,15 +46,16 @@ PhysicalNumber PhysicalNumber::operator+=(PhysicalNumber other)
 }
 PhysicalNumber PhysicalNumber::operator++()
 {
-    PhysicalNumber temp = *this;
-  ++value;
-  return temp;
+  value++;
+  return *this;
+   
  
 }
 PhysicalNumber PhysicalNumber::operator++(int other)
 {
-   value++;
-  return *this;
+  PhysicalNumber temp = *this;
+  ++value;
+  return temp;
 }
 PhysicalNumber PhysicalNumber::operator-(PhysicalNumber other)
 {
